@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
-interface CakeCardProps {
+export interface CakeCardProps {
+    id: number;
     imageUrl: string;
     name: string;
 }
