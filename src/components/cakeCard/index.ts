@@ -1,4 +1,3 @@
-import CakeCard, { CakeCardProps } from './cakeCard';
+import CakeCard from './cakeCard';
 
-export { CakeCardProps };
 export default CakeCard;

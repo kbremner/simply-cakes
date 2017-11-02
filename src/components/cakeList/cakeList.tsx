@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import CakeCard, { CakeCardProps } from '../cakeCard';
+import Cake from '../../models/cake';
+import CakeCard from '../cakeCard';
 
 interface CakeListProps {
-    cakes: CakeCardProps[];
+    cakes: Cake[];
 }
 
 class CakeList extends Component<CakeListProps, {}> {

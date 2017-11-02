@@ -1,12 +1,7 @@
 import React, { Component } from 'react';
+import Cake from '../../models/cake';
 
-export interface CakeCardProps {
-    id: number;
-    imageUrl: string;
-    name: string;
-}
-
-class CakeCard extends Component<CakeCardProps, {}> {
+class CakeCard extends Component<Cake> {
     render() {
         const { imageUrl, name } = this.props;
         return (
