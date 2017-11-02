@@ -3,15 +3,25 @@ import Cake from '../../models/cake';
 import CakeCard from '../cakeCard';
 
 interface CakeListProps {
-    cakes: Cake[];
+    loading: boolean | false;
+    cakes: Cake[] | null;
 }
 
-class CakeList extends Component<CakeListProps, {}> {
+class CakeList extends Component<CakeListProps> {
+    renderCakes() {
+        const { cakes } = this.props;
+        return cakes && cakes.length > 0
+            ? cakes.map(cake =>
+                <CakeCard key={cake.id} {...cake} />)
+            : <div>No cakes!</div>;
+    }
+
     render() {
         return (
             <div>
-                {this.props.cakes.map(cake =>
-                    <CakeCard key={cake.id} {...cake} />)}
+                {this.props.loading
+                    ? <div>Loading...</div>
+                    : this.renderCakes()}
             </div>
         );
     }

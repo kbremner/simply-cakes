@@ -13,14 +13,14 @@ const cakes = new Array(10).fill(null).map((val, i) => ({
 
 it('renders without crashing', () => {
     const div = document.createElement('div');
-    ReactDOM.render(<CakeList cakes={cakes} />, div);
+    ReactDOM.render(<CakeList loading={false} cakes={cakes} />, div);
 });
 
 describe('when rendered', () => {
     let wrapper: ShallowWrapper<{}, {}>;
     
     beforeAll(() => {
-        wrapper = shallow(<CakeList cakes={cakes} />);
+        wrapper = shallow(<CakeList loading={false} cakes={cakes} />);
     });
 
     it('renders a CakeCard for each provided cake', () => {
@@ -39,4 +39,19 @@ describe('when rendered', () => {
             ));
         });
     });
+});
+
+it('shows a loading message when loading is true', () => {
+    const wrapper = shallow(<CakeList loading={true} cakes={cakes} />);
+    expect(wrapper).toContainReact(<div>Loading...</div>);
+});
+
+it('shows a message when loading is false and cakes is null', () => {
+    const wrapper = shallow(<CakeList loading={false} cakes={null} />);
+    expect(wrapper).toContainReact(<div>No cakes!</div>);
+});
+
+it('shows a message when loading is false and cakes is empty', () => {
+    const wrapper = shallow(<CakeList loading={false} cakes={[]} />);
+    expect(wrapper).toContainReact(<div>No cakes!</div>);
 });
