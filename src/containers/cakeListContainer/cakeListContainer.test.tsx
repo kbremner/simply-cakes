@@ -3,7 +3,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { shallow } from 'enzyme';
 import { MemoryRouter } from 'react-router-dom';
-import CakeList from '../components/cakeList';
+import CakeList from '../../components/cakeList';
 import { CakeListContainer } from './cakeListContainer';
 
 const cakes = new Array(10).fill(null).map((val, i) => ({

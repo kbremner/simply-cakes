@@ -1,10 +1,10 @@
 import React, { Component, ComponentClass } from 'react';
 import { connect } from 'react-redux';
-import { fetchCakes } from '../actions';
-import { AppState } from '../reducers';
-import { selectors } from '../reducers/cakes';
-import CakeList from '../components/cakeList';
-import Cake from '../models/cake';
+import { fetchCakes } from '../../actions';
+import { AppState } from '../../reducers';
+import { selectors } from '../../reducers/cakes';
+import CakeList from '../../components/cakeList';
+import Cake from '../../models/cake';
 
 interface CakeListContainerProps {
     loadCakes: () => void;
