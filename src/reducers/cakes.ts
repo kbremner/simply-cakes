@@ -4,12 +4,14 @@ import Cake from '../models/cake';
 
 export interface CakesState {
     loading: boolean;
+    saving: boolean;
     error: Error | null;
     all: Cake[] | null;
 }
 
 export const initialState: CakesState = {
     loading: false,
+    saving: false,
     error: null,
     all: null,
 };
@@ -40,6 +42,24 @@ export default (state = initialState, action: AnyAction): CakesState => {
                 error: action.payload,
                 loading: false
             };
+
+        case types.ADD_CAKE:
+            return {
+                ...state,
+                error: action.error ? action.payload : null,
+                saving: !action.error
+            };
+        case types.CAKE_ADDED:
+            return {
+                ...state,
+                saving: false
+            };
+        case types.ADD_CAKE_FAILED:
+            return {
+                ...state,
+                error: action.payload,
+                saving: false
+            };
         default:
             return state;
     }
@@ -47,7 +67,8 @@ export default (state = initialState, action: AnyAction): CakesState => {
 
 const selectors = {
     all: (state: { cakes: CakesState }) => state.cakes.all,
-    loading: (state: { cakes: CakesState }) => state.cakes.loading
+    loading: (state: { cakes: CakesState }) => state.cakes.loading,
+    saving: (state: { cakes: CakesState }) => state.cakes.saving
 };
 
 export { selectors };

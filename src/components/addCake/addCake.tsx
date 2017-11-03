@@ -5,6 +5,7 @@ interface AddCakeProps {
     cake: Cake;
     onChange: (cake: Cake) => void;
     save: () => void;
+    saving: boolean;
 }
 
 class AddCake extends Component<AddCakeProps> {
@@ -42,12 +43,16 @@ class AddCake extends Component<AddCakeProps> {
                     value={comment || ''}
                     onChange={(event) => this.onChange({ comment: event.currentTarget.value })}
                 />
-                <input
-                    className="saveButton"
-                    type="button"
-                    onClick={this.props.save}
-                    value="Save"
-                />
+                <div>
+                    {this.props.saving
+                        ? <div className="savingMsg">Saving...</div>
+                        : <input
+                            className="saveButton"
+                            type="button"
+                            onClick={this.props.save}
+                            value="Save"
+                        />}
+                </div>
             </div>
         );
     }

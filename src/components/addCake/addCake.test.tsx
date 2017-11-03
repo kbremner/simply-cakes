@@ -15,7 +15,7 @@ const cake: Cake = {
 
 it('renders without crashing', () => {
     const div = document.createElement('div');
-    ReactDOM.render(<AddCake cake={cake} onChange={jest.fn()} save={jest.fn()} />, div);
+    ReactDOM.render(<AddCake cake={cake} onChange={jest.fn()} save={jest.fn()} saving={false} />, div);
 });
 
 describe('when rendered', () => {
@@ -26,7 +26,7 @@ describe('when rendered', () => {
     beforeEach(() => {
         onChange = jest.fn();
         save = jest.fn();
-        wrapper = shallow(<AddCake cake={cake} onChange={onChange} save={save} />);
+        wrapper = shallow(<AddCake cake={cake} onChange={onChange} save={save} saving={false} />);
     });
 
     describe('image URL input', () => {
@@ -120,5 +120,25 @@ describe('when rendered', () => {
             buttonWrapper.simulate('click');
             expect(save).toHaveBeenCalledTimes(1);
         });
+    });
+
+    it('does not contain loading message', () => {
+        expect(wrapper.find('.savingMsg')).not.toBePresent();
+    });
+});
+
+describe('when saving', () => {
+    let wrapper: ShallowWrapper<{}, {}>;
+    
+    beforeEach(() => {
+        wrapper = shallow(<AddCake cake={cake} onChange={jest.fn()} save={jest.fn()} saving={true} />);
+    });
+
+    it('does not render save button', () => {
+        expect(wrapper.find('.saveButton')).not.toBePresent();
+    });
+
+    it('renders saving message', () => {
+        expect(wrapper).toContainReact(<div className="savingMsg">Saving...</div>);
     });
 });

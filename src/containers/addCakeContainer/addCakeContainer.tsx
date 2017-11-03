@@ -4,9 +4,11 @@ import AddCake from '../../components/addCake';
 import Cake from '../../models/cake';
 import { addCake } from '../../actions';
 import { AppState } from '../../reducers';
+import { selectors } from '../../reducers/cakes';
 
 interface AddCakeContainerProps {
     createCake: (newCake: Cake) => void;
+    saving: boolean;
 }
 
 export class AddCakeContainer extends Component<AddCakeContainerProps, { cake: Cake }> {
@@ -29,6 +31,7 @@ export class AddCakeContainer extends Component<AddCakeContainerProps, { cake: C
                 cake={this.state.cake}
                 onChange={(cake) => this.setState({ cake })}
                 save={() => this.props.createCake(this.state.cake)}
+                saving={this.props.saving}
             />
         );
     }
@@ -36,6 +39,7 @@ export class AddCakeContainer extends Component<AddCakeContainerProps, { cake: C
 
 const mapStateToProps = (state: AppState) => {
     return {
+        saving: selectors.saving(state)
     };
 };
 

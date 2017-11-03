@@ -7,7 +7,7 @@ import { AddCakeContainer } from './addCakeContainer';
 
 it('renders without crashing', () => {
     const div = document.createElement('div');
-    ReactDOM.render(<AddCakeContainer createCake={jest.fn()} />, div);
+    ReactDOM.render(<AddCakeContainer createCake={jest.fn()} saving={false} />, div);
 });
 
 describe('AddCake component', () => {
@@ -16,7 +16,7 @@ describe('AddCake component', () => {
 
     beforeEach(() => {
         createCake = jest.fn();
-        wrapper = shallow(<AddCakeContainer createCake={createCake} />).find(AddCake);
+        wrapper = shallow(<AddCakeContainer createCake={createCake} saving={true} />).find(AddCake);
     });
 
     it('is rendered with cake property', () => {
@@ -29,6 +29,10 @@ describe('AddCake component', () => {
     
     it('is rendered with save property', () => {
         expect(wrapper).toHaveProp('save');
+    });
+
+    it('is rendered with saving property', () => {
+        expect(wrapper).toHaveProp('saving', true);
     });
 
     it('triggers a save when AddCake calls save property', () => {
