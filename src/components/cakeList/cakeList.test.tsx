@@ -1,7 +1,7 @@
 /// <reference types="jest-enzyme" />
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { shallow, ShallowWrapper } from 'enzyme';
+import { shallow } from 'enzyme';
 import CakeCard from '../cakeCard';
 import CakeList from './cakeList';
 
@@ -16,28 +16,21 @@ it('renders without crashing', () => {
     ReactDOM.render(<CakeList loading={false} cakes={cakes} />, div);
 });
 
-describe('when rendered', () => {
-    let wrapper: ShallowWrapper<{}, {}>;
-    
-    beforeAll(() => {
-        wrapper = shallow(<CakeList loading={false} cakes={cakes} />);
-    });
+it('renders a CakeCard for each provided cake', () => {
+    // this test will pass if for some reason cakes
+    // isn't initialised correctly, so ensure that
+    // at least one assertion is called
+    expect.hasAssertions();
+    const wrapper = shallow(<CakeList loading={false} cakes={cakes} />);
 
-    it('renders a CakeCard for each provided cake', () => {
-        // this test will pass if for some reason cakes
-        // isn't initialised correctly, so ensure that
-        // at least one assertion is called
-        expect.hasAssertions();
-
-        cakes.forEach(cake => {
-            expect(wrapper).toContainReact((
-                <CakeCard
-                    id={cake.id}
-                    name={cake.name}
-                    imageUrl={cake.imageUrl}
-                />
-            ));
-        });
+    cakes.forEach(cake => {
+        expect(wrapper).toContainReact((
+            <CakeCard
+                id={cake.id}
+                name={cake.name}
+                imageUrl={cake.imageUrl}
+            />
+        ));
     });
 });
 
