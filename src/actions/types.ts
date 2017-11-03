@@ -1,0 +1,7 @@
+enum Types {
+    FETCH_CAKES = 'FETCH_CAKES',
+    RECEIVED_CAKES = 'RECEIVED_CAKES',
+    FETCH_CAKES_FAILED = 'FETCH_CAKES_FAILED'
+}
+
+export default Types;
