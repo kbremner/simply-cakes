@@ -13,16 +13,18 @@ class App extends React.Component {
           path="/"
           component={NavBar}
         />
-        <Route
-          exact={true}
-          path="/"
-          component={CakeListContainer}
-        />
-        <Route
-          exact={true}
-          path="/add"
-          component={AddCakeContainer}
-        />
+        <div className="contentContainer">
+          <Route
+            exact={true}
+            path="/"
+            component={CakeListContainer}
+          />
+          <Route
+            exact={true}
+            path="/add"
+            component={AddCakeContainer}
+          />
+        </div>
       </div>
     );
   }
