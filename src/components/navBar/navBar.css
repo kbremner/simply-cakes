@@ -1,0 +1,18 @@
+.navBar {
+    background-color: rgb(23,33,62);
+    color: white;
+    display: flex;
+    align-items: center;
+    height: 60px;
+    padding: 0 20px;
+    justify-content: space-between;
+}
+
+.navBar .appName {
+    display: flex;
+    align-items: center;
+}
+
+.navBar .appName a {
+    padding-right: 10px;
+}
