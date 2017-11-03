@@ -2,7 +2,7 @@ import { CALL_API } from 'redux-api-middleware';
 import Cake from '../models/cake';
 import types from './types';
 
-const BASE_URI = 'http://ec2-52-209-201-89.eu-west-1.compute.amazonaws.com:5000/api';
+const BASE_URI = process.env.REACT_APP_API_BASE_URI;
 
 export function fetchCakes() {
     return {
