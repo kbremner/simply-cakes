@@ -7,6 +7,11 @@
     background-color:white;
 }
 
+.cakeCardContainer {
+    color: initial;
+    text-decoration: none;
+}
+
 .cakeCard img {
     height: 100%;
     width: 200px;

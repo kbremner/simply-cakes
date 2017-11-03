@@ -18,6 +18,20 @@ export function fetchCakes() {
     };
 }
 
+export function fetchCake(id: number) {
+    return {
+        [CALL_API]: {
+            endpoint: `${BASE_URI}/cakes/${id}`,
+            method: 'GET',
+            types: [
+                types.FETCH_CAKE,
+                types.RECEIVED_CAKE,
+                types.FETCH_CAKE_FAILED
+            ]
+        }
+    };
+}
+
 export function addCake(newCake: Cake) {
     return {
         [CALL_API]: {

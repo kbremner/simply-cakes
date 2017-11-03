@@ -1,6 +1,7 @@
 import React from 'react';
 import CakeListContainer from './containers/cakeListContainer';
 import AddCakeContainer from './containers/addCakeContainer';
+import CakeDetailsContainer from './containers/cakeDetailsContainer';
 import NavBar from './components/navBar';
 import { Route } from 'react-router-dom';
 import './App.css';
@@ -23,6 +24,11 @@ class App extends React.Component {
             exact={true}
             path="/add"
             component={AddCakeContainer}
+          />
+          <Route
+            exact={true}
+            path="/:id"
+            component={CakeDetailsContainer}
           />
         </div>
       </div>

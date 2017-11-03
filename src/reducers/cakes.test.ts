@@ -21,7 +21,13 @@ describe('unhandled action', () => {
     });
 
     it('returns state if provided', () => {
-        const testState: CakesState = { loading: true, all: [], saving: false, error: new Error('test error') };
+        const testState: CakesState = {
+            loading: true,
+            all: [],
+            saving: false,
+            details: null,
+            error: new Error('test error')
+        };
         const result = reducer(testState, action);
         expect(result).toEqual(testState);
     });
@@ -100,6 +106,100 @@ describe(types.RECEIVED_CAKES, () => {
 describe(types.FETCH_CAKES_FAILED, () => {
     const payload = { name: 'ResponseError', message: 'test response error payload' };
     const action = { type: types.FETCH_CAKES_FAILED, payload, error: true };
+
+    it('sets other properties from initial state if no state provided', () => {
+        const result = reducer(undefined, action);
+        expect(result).toEqual({
+            ...initialState,
+            loading: false,
+            error: payload
+        });
+    });
+
+    it('sets loading to false', () => {
+        const result = reducer(undefined, action);
+        expect(result).toHaveProperty('loading', false);
+    });
+    
+    it('sets error to the action payload', () => {
+        const result = reducer(undefined, action);
+        expect(result).toHaveProperty('error', payload);
+    });
+});
+
+describe(types.FETCH_CAKE, () => {
+    const action = { type: types.FETCH_CAKE };
+
+    it('sets other properties from initial state if no state provided', () => {
+        const result = reducer(undefined, action);
+        expect(result).toEqual({
+            ...initialState,
+            loading: true
+        });
+    });
+
+    describe('when request is successful', () => {
+        it('sets loading to true', () => {
+            const result = reducer(undefined, action);
+            expect(result).toHaveProperty('loading', true);
+        });
+    
+        it('sets error to null', () => {
+            const testState: CakesState = { ...initialState, error: new Error('test error') };
+            const result = reducer(testState, action);
+            expect(result).toHaveProperty('error', null);
+        });
+
+        it('sets details to null', () => {
+            const testState: CakesState = { ...initialState, details: cakes[0] };
+            const result = reducer(testState, action);
+            expect(result).toHaveProperty('details', null);
+        });
+    });
+
+    describe('when request fails', () => {
+        const payload = { name: 'RequestError', message: 'test request error payload' };
+        const errorAction = { ...action, payload, error: true };
+
+        it('sets loading to false', () => {
+            const result = reducer(undefined, errorAction);
+            expect(result).toHaveProperty('loading', false);
+        });
+        
+        it('sets error to the action payload', () => {
+            const result = reducer(undefined, errorAction);
+            expect(result).toHaveProperty('error', payload);
+        });
+    });
+});
+
+describe(types.RECEIVED_CAKE, () => {
+    const action = { type: types.RECEIVED_CAKE, payload: cakes[0] };
+
+    it('sets other properties from initial state if no state provided', () => {
+        const result = reducer(undefined, action);
+        expect(result).toEqual({
+            ...initialState,
+            details: cakes[0]
+        });
+    });
+
+    it('sets details property to payload of action', () => {
+        const testState: CakesState = { ...initialState, details: cakes[1] };
+        const result = reducer(testState, action);
+        expect(result).toHaveProperty('details', cakes[0]);
+    });
+
+    it('sets loading to false', () => {
+        const testState: CakesState = { ...initialState, loading: true };
+        const result = reducer(testState, action);
+        expect(result).toHaveProperty('loading', false);
+    });
+});
+
+describe(types.FETCH_CAKE_FAILED, () => {
+    const payload = { name: 'ResponseError', message: 'test response error payload' };
+    const action = { type: types.FETCH_CAKE_FAILED, payload, error: true };
 
     it('sets other properties from initial state if no state provided', () => {
         const result = reducer(undefined, action);
@@ -207,7 +307,8 @@ describe('selectors', () => {
         error: { name: 'Error', message: 'test error payload' },
         loading: true,
         saving: false,
-        all: cakes
+        all: cakes,
+        details: cakes[0]
     };
 
     it('returns all property from all selector', () => {
@@ -218,5 +319,10 @@ describe('selectors', () => {
     it('returns loading property from loading selector', () => {
         const result = selectors.loading({ cakes: state });
         expect(result).toBe(true);
+    });
+
+    it('returns details property from details selector', () => {
+        const result = selectors.details({ cakes: state });
+        expect(result).toBe(cakes[0]);
     });
 });

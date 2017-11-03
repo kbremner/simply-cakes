@@ -1,0 +1,21 @@
+.loadingMsg {
+    text-align: center;
+    padding-top: 20px;
+}
+
+.cakeDetails .imageContainer {
+    text-align: center;
+}
+
+.cakeDetails .detailsContainer {
+    padding: 20px;
+}
+
+.cakeDetails .imageContainer img {
+    max-height: 300px;
+    max-width: 100%;
+}
+
+.addCake .savingMsg, .addCake .saveButton {
+    margin-top: 20px;
+}

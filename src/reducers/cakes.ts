@@ -7,6 +7,7 @@ export interface CakesState {
     saving: boolean;
     error: Error | null;
     all: Cake[] | null;
+    details: Cake | null;
 }
 
 export const initialState: CakesState = {
@@ -14,6 +15,7 @@ export const initialState: CakesState = {
     saving: false,
     error: null,
     all: null,
+    details: null,
 };
 
 export default (state = initialState, action: AnyAction): CakesState => {
@@ -37,6 +39,26 @@ export default (state = initialState, action: AnyAction): CakesState => {
                 all: action.payload
             };
         case types.FETCH_CAKES_FAILED:
+            return {
+                ...state,
+                error: action.payload,
+                loading: false
+            };
+
+        case types.FETCH_CAKE:
+            return {
+                ...state,
+                error: action.error ? action.payload : null,
+                details: null,
+                loading: !action.error
+            };
+        case types.RECEIVED_CAKE:
+            return {
+                ...state,
+                loading: false,
+                details: action.payload
+            };
+        case types.FETCH_CAKE_FAILED:
             return {
                 ...state,
                 error: action.payload,
@@ -68,7 +90,8 @@ export default (state = initialState, action: AnyAction): CakesState => {
 const selectors = {
     all: (state: { cakes: CakesState }) => state.cakes.all,
     loading: (state: { cakes: CakesState }) => state.cakes.loading,
-    saving: (state: { cakes: CakesState }) => state.cakes.saving
+    saving: (state: { cakes: CakesState }) => state.cakes.saving,
+    details: (state: { cakes: CakesState }) => state.cakes.details
 };
 
 export { selectors };

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import './cakeCard.css';
 import Cake from '../../models/cake';
 
@@ -6,12 +7,14 @@ const defaultCakeImage = require('./default_cake.png');
 
 class CakeCard extends Component<Cake> {
     render() {
-        const { imageUrl, name } = this.props;
+        const { imageUrl, name, id } = this.props;
         return (
-            <div className="cakeCard">
-                <img src={imageUrl || defaultCakeImage} onError={this.onImageLoadError} />
-                <span>{name}</span>
-            </div>
+            <Link className="cakeCardContainer" to={`/${id}`}>
+                <div className="cakeCard">
+                    <img src={imageUrl || defaultCakeImage} onError={this.onImageLoadError} />
+                    <span>{name}</span>
+                </div>
+            </Link>
         );
     }
 
