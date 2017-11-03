@@ -35,6 +35,6 @@ describe('when rendered', () => {
 
     it('renders a Link element pointing to details page for cake', () => {
         const linkWrapper = wrapper.find(Link);
-        expect(linkWrapper).toHaveProp('to', `/${id}`);
+        expect(linkWrapper).toHaveProp('to', `/cakes/${id}`);
     });
 });

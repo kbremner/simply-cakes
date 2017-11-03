@@ -9,7 +9,7 @@ class CakeCard extends Component<Cake> {
     render() {
         const { imageUrl, name, id } = this.props;
         return (
-            <Link className="cakeCardContainer" to={`/${id}`}>
+            <Link className="cakeCardContainer" to={`/cakes/${id}`}>
                 <div className="cakeCard">
                     <img src={imageUrl || defaultCakeImage} onError={this.onImageLoadError} />
                     <span>{name}</span>

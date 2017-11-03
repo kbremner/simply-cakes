@@ -27,7 +27,7 @@ class App extends React.Component {
           />
           <Route
             exact={true}
-            path="/:id"
+            path="/cakes/:id"
             component={CakeDetailsContainer}
           />
         </div>
