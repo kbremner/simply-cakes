@@ -15,6 +15,6 @@ it('renders without crashing', () => {
             <MemoryRouter>
                 <App />
             </MemoryRouter>
-        </Provider>
-    , div);
+        </Provider>,
+        div);
 });
