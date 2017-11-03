@@ -1,5 +1,7 @@
 export default interface Cake {
-    id: number;
+    id: number | undefined;
     imageUrl: string;
+    yumFactor: number;
     name: string;
+    comment: string;
 }

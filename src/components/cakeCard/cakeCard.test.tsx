@@ -6,7 +6,7 @@ import CakeCard from './cakeCard';
 
 it('renders without crashing', () => {
     const div = document.createElement('div');
-    ReactDOM.render(<CakeCard id={0} name="" imageUrl="" />, div);
+    ReactDOM.render(<CakeCard id={0} name="" imageUrl="" yumFactor={3} comment="" />, div);
 });
 
 describe('when rendered', () => {
@@ -16,7 +16,7 @@ describe('when rendered', () => {
     let wrapper: ShallowWrapper<{}, {}>;
     
     beforeAll(() => {
-        wrapper = shallow(<CakeCard id={id} name={name} imageUrl={imageUrl} />);
+        wrapper = shallow(<CakeCard id={id} name={name} imageUrl={imageUrl} yumFactor={3} comment="" />);
     });
 
     it('renders an image with provided URL', () => {

@@ -7,7 +7,9 @@ const cakes = new Array(10)
     .map((val, i) => ({
         id: i,
         name: `cake-name-${i}`,
-        imageUrl: `cake-image-url-${i}`
+        imageUrl: `cake-image-url-${i}`,
+        yumFactor: 3,
+        comment: 'cake comment'
     }));
 
 describe('unhandled action', () => {

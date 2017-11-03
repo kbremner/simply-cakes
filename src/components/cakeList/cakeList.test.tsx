@@ -8,7 +8,9 @@ import CakeList from './cakeList';
 const cakes = new Array(10).fill(null).map((val, i) => ({
     id: i,
     name: `cake-name-${i}`,
-    imageUrl: `cake-image-url-${i}`
+    imageUrl: `cake-image-url-${i}`,
+    yumFactor: 3,
+    comment: 'cake comment'
 }));
 
 it('renders without crashing', () => {
@@ -24,13 +26,7 @@ it('renders a CakeCard for each provided cake', () => {
     const wrapper = shallow(<CakeList loading={false} cakes={cakes} />);
 
     cakes.forEach(cake => {
-        expect(wrapper).toContainReact((
-            <CakeCard
-                id={cake.id}
-                name={cake.name}
-                imageUrl={cake.imageUrl}
-            />
-        ));
+        expect(wrapper).toContainReact( <CakeCard {...cake} />);
     });
 });
 
