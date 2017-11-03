@@ -4,6 +4,7 @@
     align-items: center;
     box-shadow: 2px 2px 10px 0 rgba(0,0,0,0.4);
     margin: 20px;
+    background-color:white;
 }
 
 .cakeCard img {

@@ -36,7 +36,7 @@ it('renders a CakeCard for each provided cake', () => {
 
 it('shows a loading message when loading is true', () => {
     const wrapper = shallow(<CakeList loading={true} cakes={cakes} />);
-    expect(wrapper).toContainReact(<div>Loading...</div>);
+    expect(wrapper).toContainReact(<div className="loadingMsg">Loading...</div>);
 });
 
 it('shows a message when loading is false and cakes is null', () => {

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Cake from '../../models/cake';
 import CakeCard from '../cakeCard';
+import './cakeList.css';
 
 interface CakeListProps {
     loading: boolean | false;
@@ -18,9 +19,9 @@ class CakeList extends Component<CakeListProps> {
 
     render() {
         return (
-            <div>
+            <div className="cakeList">
                 {this.props.loading
-                    ? <div>Loading...</div>
+                    ? <div className="loadingMsg">Loading...</div>
                     : this.renderCakes()}
             </div>
         );
