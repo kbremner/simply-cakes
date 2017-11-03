@@ -20,7 +20,8 @@ describe('when rendered', () => {
     });
 
     it('renders an image with provided URL', () => {
-        expect(wrapper).toContainReact(<img src={imageUrl} />);
+        const imageWrapper = wrapper.find('img');
+        expect(imageWrapper).toHaveProp('src', imageUrl);
     });
 
     it('renders a span with the provided name', () => {
