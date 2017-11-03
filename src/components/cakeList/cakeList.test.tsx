@@ -2,6 +2,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { shallow } from 'enzyme';
+import { MemoryRouter } from 'react-router-dom';
 import CakeCard from '../cakeCard';
 import CakeList from './cakeList';
 
@@ -15,7 +16,11 @@ const cakes = new Array(10).fill(null).map((val, i) => ({
 
 it('renders without crashing', () => {
     const div = document.createElement('div');
-    ReactDOM.render(<CakeList loading={false} cakes={cakes} />, div);
+    ReactDOM.render(
+        <MemoryRouter>
+            <CakeList loading={false} cakes={cakes} />
+        </MemoryRouter>,
+        div);
 });
 
 it('renders a CakeCard for each provided cake', () => {

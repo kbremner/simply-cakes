@@ -2,6 +2,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { shallow } from 'enzyme';
+import { MemoryRouter } from 'react-router-dom';
 import CakeList from '../components/cakeList';
 import { CakeListContainer } from './cakeListContainer';
 
@@ -15,7 +16,11 @@ const cakes = new Array(10).fill(null).map((val, i) => ({
 
 it('renders without crashing', () => {
     const div = document.createElement('div');
-    ReactDOM.render(<CakeListContainer cakes={cakes} loading={false} loadCakes={jest.fn()} />, div);
+    ReactDOM.render(
+        <MemoryRouter>
+            <CakeListContainer cakes={cakes} loading={false} loadCakes={jest.fn()} />
+        </MemoryRouter>,
+        div);
 });
 
 it('loads cakes when component is mounted', () => {
