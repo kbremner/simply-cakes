@@ -1,5 +1,6 @@
 import React from 'react';
 import CakeListContainer from './containers/cakeListContainer';
+import AddCakeContainer from './containers/addCakeContainer';
 import NavBar from './components/navBar';
 import {
   BrowserRouter as Router,
@@ -24,7 +25,7 @@ class App extends React.Component {
           <Route
             exact={true}
             path="/add"
-            render={() => <div>TODO</div>}
+            component={AddCakeContainer}
           />
         </div>
       </Router>
